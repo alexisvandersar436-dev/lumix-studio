@@ -22,7 +22,7 @@ exports.handler = async (event) => {
   }
 
   const { full_name, business_name, contact_phone_or_email, need, start_time, notes } = payload;
-  const missing = ['full_name', 'business_name', 'contact_phone_or_email', 'need', 'start_time']
+  const missing = ['full_name', 'business_name', 'need', 'start_time']
     .filter((k) => !payload[k]);
   if (missing.length) {
     return { statusCode: 400, body: JSON.stringify({ confirmed: false, error: `missing: ${missing.join(', ')}` }) };
@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ confirmed: false, error: 'invalid start_time' }) };
   }
   const end = new Date(start.getTime() + SLOT_MINUTES * 60_000);
-  const isEmail = /\S+@\S+\.\S+/.test(contact_phone_or_email);
+  const isEmail = contact_phone_or_email && /\S+@\S+\.\S+/.test(contact_phone_or_email);
 
   const event_ = {
     subject: `Consulta Lumix Studio — ${full_name} (${business_name})`,
@@ -41,7 +41,7 @@ exports.handler = async (event) => {
       contentType: 'text',
       content: [
         `Negocio: ${business_name}`,
-        `Contacto: ${contact_phone_or_email}`,
+        `Contacto: ${contact_phone_or_email || 'No proporcionado'}`,
         `Necesidad: ${need}`,
         notes ? `Notas: ${notes}` : null,
         '',
