@@ -2041,123 +2041,6 @@
     }
   </style>
   <style id="whatsapp-concierge">
-    /* Premium WhatsApp concierge: quiet at rest, informative on intent. */
-    .wa-float {
-      width:58px;
-      height:58px;
-      padding:7px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      gap:10px;
-      overflow:hidden;
-      isolation:isolate;
-      border:1px solid rgba(121,204,196,.48);
-      border-radius:999px;
-      color:#fff;
-      background:linear-gradient(145deg,rgba(45,151,143,.96),rgba(27,103,103,.98));
-      box-shadow:0 14px 34px rgba(8,35,40,.22),inset 0 1px 0 rgba(255,255,255,.16);
-      -webkit-backdrop-filter:blur(14px);
-      backdrop-filter:blur(14px);
-      transition:width .38s cubic-bezier(.22,.75,.18,1),transform .3s cubic-bezier(.22,.75,.18,1),box-shadow .3s ease,bottom .45s cubic-bezier(.16,.8,.22,1),border-color .3s ease;
-      animation:waConciergeIn .64s cubic-bezier(.22,.75,.18,1) .55s both;
-    }
-    .wa-float::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      border-radius:inherit;
-      background:linear-gradient(115deg,rgba(255,255,255,.12),transparent 38%,rgba(255,255,255,.04));
-      pointer-events:none;
-    }
-    .wa-float::after {
-      content:"";
-      position:absolute;
-      top:9px;
-      right:9px;
-      width:7px;
-      height:7px;
-      border:2px solid rgba(20,92,91,.92);
-      border-radius:50%;
-      background:#88e6b8;
-      box-shadow:0 0 0 2px rgba(136,230,184,.1);
-      transition:transform .32s ease;
-    }
-    .wa-icon {
-      flex:0 0 42px;
-      width:42px;
-      height:42px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      background:rgba(255,255,255,.11);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-    }
-    .wa-float .wa-icon svg { width:24px; height:24px; }
-    .wa-label {
-      min-width:108px;
-      display:grid;
-      gap:2px;
-      opacity:0;
-      transform:translateX(-7px);
-      transition:opacity .22s ease .02s,transform .34s cubic-bezier(.22,.75,.18,1);
-      white-space:nowrap;
-      text-align:left;
-      pointer-events:none;
-    }
-    .wa-label strong { font:600 13px/1.1 "Poppins",sans-serif; letter-spacing:.01em; }
-    .wa-label small { color:rgba(255,255,255,.7); font:500 9px/1.2 "Inter",sans-serif; letter-spacing:.02em; }
-
-    @media (hover:hover) and (pointer:fine) {
-      .wa-float:hover,
-      .wa-float:focus-visible {
-        width:198px;
-        transform:translateY(-3px);
-        border-color:rgba(158,225,217,.68);
-        box-shadow:0 18px 44px rgba(8,35,40,.3),inset 0 1px 0 rgba(255,255,255,.2);
-      }
-      .wa-float:hover .wa-label,
-      .wa-float:focus-visible .wa-label { opacity:1; transform:none; transition-delay:.08s; }
-      .wa-float:hover::after,
-      .wa-float:focus-visible::after { transform:scale(1.08); }
-    }
-
-    html[data-theme="light"] .wa-float {
-      border-color:rgba(39,128,124,.46);
-      background:linear-gradient(145deg,#329b94,#1d6f70);
-      box-shadow:0 14px 34px rgba(17,57,61,.2),inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    html[data-theme="dark"] .wa-float {
-      background:linear-gradient(145deg,rgba(49,154,146,.96),rgba(25,92,95,.98));
-    }
-
-    @media (max-width:767px), (hover:none) {
-      .wa-float,
-      .wa-float:hover,
-      .wa-float:focus-visible {
-        right:14px;
-        width:54px;
-        height:54px;
-        padding:6px;
-        border-radius:50%;
-        transform:none;
-      }
-      .wa-label { display:none; }
-      .wa-icon { flex-basis:40px; width:40px; height:40px; }
-      .wa-float .wa-icon svg { width:23px; height:23px; }
-      .wa-float::after { top:7px; right:7px; width:6px; height:6px; }
-    }
-
-    @keyframes waConciergeIn {
-      from { opacity:0; transform:translateY(12px) scale(.96); }
-      to { opacity:1; transform:none; }
-    }
-    @media (prefers-reduced-motion:reduce) {
-      .wa-float { animation:none; transition:bottom .2s ease; }
-      .wa-label { transition:none; }
-    }
-
     /* Theme control: the same quiet, premium interaction language. */
     .theme-toggle {
       position:relative;
@@ -3360,10 +3243,6 @@
     </div>
   </footer>
 
-  <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escribir a Lumix Studio por WhatsApp">
-    <span class="wa-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.44 1.32 4.93L2 22l5.29-1.39a9.87 9.87 0 004.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.51 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.31-1.93 1.36-.53.06-1.02.24-3.42-.72-2.9-1.15-4.75-4.05-4.9-4.24-.14-.19-1.17-1.56-1.17-2.98 0-1.42.75-2.11 1.02-2.4.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.32 1.44.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.63-.14.26.1 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.35z"/></svg></span>
-    <span class="wa-label" aria-hidden="true"><strong>Hablemos</strong><small>Respuesta directa</small></span>
-  </a>
   <aside class="mobile-nudge" id="mobileNudge" aria-label="Cotización gratis">
     <button class="mobile-nudge-close" id="mobileNudgeClose" type="button" aria-label="Cerrar mensaje">×</button>
     <small>¿Tienes una idea?</small><strong>Recibe una cotización inicial gratis.</strong>
@@ -3568,7 +3447,7 @@
       link.href = waUrl(defaultMessage);
       link.target = '_blank'; link.rel = 'noopener';
     });
-    ['directWa','footerWa','waFloat'].forEach(id => {
+    ['directWa','footerWa'].forEach(id => {
       const link = document.getElementById(id);
       link.href = waUrl(defaultMessage);
       link.target = '_blank';
