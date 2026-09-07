@@ -1,0 +1,11 @@
+{
+  "name": "Lumix Studio",
+  "short_name": "Lumix",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "theme_color": "#17372d",
+  "background_color": "#fbfbf8",
+  "display": "standalone",
+  "start_url": "/"
+}
