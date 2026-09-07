@@ -3639,8 +3639,8 @@
       </div>
       <p class="mini-recep-sub">Te respondemos por WhatsApp o correo, lo que prefieras.</p>
       <div class="field">
-        <label for="miniRecepName">Tu nombre <span aria-hidden="true" style="color:#c0392b">*</span></label>
-        <input id="miniRecepName" placeholder="Nombre completo" required>
+        <label for="miniRecepName">Tu nombre (opcional)</label>
+        <input id="miniRecepName" placeholder="Nombre completo">
       </div>
       <div class="field">
         <label for="miniRecepNeed">¿Qué necesitas?</label>
@@ -3682,33 +3682,22 @@
         if (!panel.hidden && !document.getElementById('miniRecep').contains(e.target)) setOpen(false);
       });
 
-      function requireName() {
+      function buildMessage() {
         const name = nameInput.value.trim();
-        if (name) return name;
-        nameInput.style.borderColor = '#c0392b';
-        nameInput.focus();
-        nameInput.addEventListener('input', () => { nameInput.style.borderColor = ''; }, { once: true });
-        return null;
-      }
-
-      function buildMessage(name) {
         const need = needInput.value.trim() || 'Me gustaría más información sobre sus servicios.';
-        return `Hola, soy ${name}. ${need}`;
+        return name ? `Hola, soy ${name}. ${need}` : `Hola, ${need}`;
       }
 
       waBtn.addEventListener('click', () => {
-        const name = requireName();
-        if (!name) return;
-        const msg = buildMessage(name);
+        const msg = buildMessage();
         window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       });
 
       mailBtn.addEventListener('click', () => {
-        const name = requireName();
-        if (!name) return;
+        const name = nameInput.value.trim();
         const need = needInput.value.trim() || 'Me gustaría más información sobre sus servicios.';
-        const subject = `Consulta de ${name} — Lumix Studio`;
-        const body = `${need}\n\n— ${name}`;
+        const subject = name ? `Consulta de ${name} — Lumix Studio` : 'Consulta — Lumix Studio';
+        const body = name ? `${need}\n\n— ${name}` : need;
         window.location.href = `mailto:${LUMIX_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       });
     })();
