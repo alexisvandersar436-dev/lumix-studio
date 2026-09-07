@@ -3639,8 +3639,8 @@
       </div>
       <p class="mini-recep-sub">Te respondemos por WhatsApp o correo, lo que prefieras.</p>
       <div class="field">
-        <label for="miniRecepName">Tu nombre</label>
-        <input id="miniRecepName" placeholder="Nombre completo">
+        <label for="miniRecepName">Tu nombre <span aria-hidden="true" style="color:#c0392b">*</span></label>
+        <input id="miniRecepName" placeholder="Nombre completo" required>
       </div>
       <div class="field">
         <label for="miniRecepNeed">¿Qué necesitas?</label>
@@ -3682,19 +3682,30 @@
         if (!panel.hidden && !document.getElementById('miniRecep').contains(e.target)) setOpen(false);
       });
 
-      function buildMessage() {
-        const name = nameInput.value.trim() || '(sin nombre)';
+      function requireName() {
+        const name = nameInput.value.trim();
+        if (name) return name;
+        nameInput.style.borderColor = '#c0392b';
+        nameInput.focus();
+        nameInput.addEventListener('input', () => { nameInput.style.borderColor = ''; }, { once: true });
+        return null;
+      }
+
+      function buildMessage(name) {
         const need = needInput.value.trim() || 'Me gustaría más información sobre sus servicios.';
         return `Hola, soy ${name}. ${need}`;
       }
 
       waBtn.addEventListener('click', () => {
-        const msg = buildMessage();
+        const name = requireName();
+        if (!name) return;
+        const msg = buildMessage(name);
         window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       });
 
       mailBtn.addEventListener('click', () => {
-        const name = nameInput.value.trim() || '(sin nombre)';
+        const name = requireName();
+        if (!name) return;
         const need = needInput.value.trim() || 'Me gustaría más información sobre sus servicios.';
         const subject = `Consulta de ${name} — Lumix Studio`;
         const body = `${need}\n\n— ${name}`;
