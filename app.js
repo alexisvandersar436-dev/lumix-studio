@@ -76,7 +76,7 @@ function paintCinema(){
   const rect=cinemaWrap.getBoundingClientRect();
   const progress=clamp((83-rect.top)/(rect.height-(innerHeight-83)));
   const open=progress*progress*(3-2*progress);
-  cinemaPhoto.style.clipPath='inset('+((1-open)*18)+'% '+((1-open)*4)+'% '+((1-open)*9)+'% '+((1-open)*50)+'% round '+((1-open)*150)+'px 0 0 0)';
+  cinemaPhoto.style.clipPath='inset('+((1-open)*7)+'% '+((1-open)*4)+'% '+((1-open)*7)+'% '+((1-open)*48)+'% round '+((1-open)*125)+'px 0 0 0)';
   cinemaIntro.style.transform='translate3d('+(-open*80)+'px,'+(-open*100)+'px,0)';
   cinemaIntro.style.opacity=String(1-clamp(open*2.3));
   cinemaIntro.style.pointerEvents=open>.45?'none':'';
