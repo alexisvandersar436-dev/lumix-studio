@@ -8,12 +8,7 @@ demoButtons.forEach(button=>button.addEventListener('click',()=>selectDemo(butto
 if(demoButtons.length)selectDemo(demoButtons[0]);
 // Motion is progressive enhancement: all content is visible without JavaScript.
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
-let motionPaused=false;
-try{motionPaused=localStorage.getItem('lumix-motion')==='paused';}catch{}
-const motionAllowed=()=>!reducedMotion.matches&&!motionPaused;
-const motionButton=document.createElement('button');
-motionButton.type='button';motionButton.className='motion-toggle';
-document.body.append(motionButton);
+const motionAllowed=()=>!reducedMotion.matches;
 const experience=document.querySelector('.experience');
 const stage=document.querySelector('.experience-stage');
 const creative=document.querySelector('.creative-window');
@@ -176,17 +171,11 @@ function paintMotion(){
 }
 function queueMotion(){if(!scrollFrame&&motionAllowed())scrollFrame=requestAnimationFrame(paintMotion);}
 function syncMotion(){
- document.documentElement.classList.toggle('motion-paused',motionPaused);
- motionButton.textContent=motionPaused?'Activar movimiento ↗':'Pausar movimiento Ⅱ';
- motionButton.setAttribute('aria-label',motionPaused?'Activar movimiento':'Pausar movimiento');
- motionButton.title=motionPaused?'Activar movimiento':'Pausar movimiento';
- motionButton.setAttribute('aria-pressed',String(motionPaused));
  syncCinema();
  activeMotion.forEach(animation=>animation.cancel());
  scrollElements.forEach(element=>element.style.removeProperty('transform'));
  queueMotion();
 }
-motionButton.addEventListener('click',()=>{motionPaused=!motionPaused;try{localStorage.setItem('lumix-motion',motionPaused?'paused':'on');}catch{}syncMotion();});
 reducedMotion.addEventListener('change',syncMotion);
 addEventListener('scroll',queueMotion,{passive:true});
 addEventListener('resize',()=>{syncCinema();queueMotion();},{passive:true});
