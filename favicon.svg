@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Logo de Lumix Studio">
-  <defs><linearGradient id="lumixGradient" x1="5" y1="4" x2="43" y2="44"><stop stop-color="#35dd70"/><stop offset="1" stop-color="#14532d"/></linearGradient></defs>
-  <rect x="2" y="2" width="44" height="44" rx="13" fill="#0b3323"/>
-  <path d="M14 11h9v20h13v8H14z" fill="url(#lumixGradient)"/>
-  <rect x="31" y="11" width="7" height="7" rx="2" fill="#d4af37"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#163e32"/><path d="M13 10h8v23h15v7H13z" fill="#e6ead6"/><rect x="30" y="10" width="8" height="8" rx="1" fill="#c6aa74"/></svg>
