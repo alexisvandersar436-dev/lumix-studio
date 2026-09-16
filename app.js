@@ -186,7 +186,7 @@ if('IntersectionObserver' in window){
   revealObserver.unobserve(entry.target);
   animateOnce(entry.target,[{opacity:.35,transform:'translateY(35px)'},{opacity:1,transform:'translateY(0)'}],{duration:850,easing:'cubic-bezier(.22,1,.36,1)'});
  }),{threshold:.12});
- document.querySelectorAll('.manifesto h2,.manifesto>div,.section-intro,.studio-copy,.steps article,.closing-inner,.service-card,.plan,.directory-card,.promise-item').forEach(element=>revealObserver.observe(element));
+ document.querySelectorAll('.manifesto h2,.manifesto>div,.section-intro,.studio-copy,.steps article,.closing-inner,.service-card,.plan,.directory-card,.promise-item,.conversion-trust li,.process-list article,.founder-grid>*').forEach(element=>revealObserver.observe(element));
  const plansObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
     plansObserver.unobserve(entry.target);
