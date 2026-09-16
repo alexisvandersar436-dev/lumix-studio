@@ -222,8 +222,8 @@ if(form){
   e.preventDefault();if(!form.reportValidity())return;
   const data=new FormData(form);if(data.get('bot-field'))return;
   const services=data.getAll('servicio').join(', ')||'Por definir';
-  const message=`Hola Nestor, soy ${data.get('nombre')} de ${data.get('negocio')}.\nMe interesa: ${services}.\nTeléfono: ${data.get('telefono')}\nCorreo: ${data.get('email')}\n${data.get('mensaje')||''}`;
+  const message=`Hola Néstor, soy ${data.get('nombre')} de ${data.get('negocio')}.\nMe interesa: ${services}.\nTeléfono: ${data.get('telefono')}\nCorreo: ${data.get('email')}\n${data.get('mensaje')||''}`;
   status.replaceChildren(document.createTextNode('Tu mensaje está listo. '));
-  const link=document.createElement('a');link.href='https://wa.me/50244931218?text='+encodeURIComponent(message);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir WhatsApp para revisarlo y enviarlo ↗';status.append(link);link.focus();
+  const link=document.createElement('a');link.href='https://wa.me/50244931218?text='+encodeURIComponent(message);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir WhatsApp para revisarlo y enviarlo ';status.append(link);link.focus();
  });
 }

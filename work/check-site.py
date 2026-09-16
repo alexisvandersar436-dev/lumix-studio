@@ -123,14 +123,21 @@ for canonical in canonicals:
 homepage = Page()
 homepage.feed((root / "index.html").read_text(encoding="utf-8"))
 homepage_text = " ".join(homepage.text_chunks)
-for required in ("Solicitar cotización", "Ver proyectos", "Proyectos Lumix", "Más elegido", "Nestor Ordonez"):
+for required in ("Solicitar cotización", "Ver proyectos", "Proyectos Lumix", "Diseño de logotipo", "Email marketing", "Néstor Ordóñez"):
     if required not in homepage_text:
         failures.append("Homepage missing required content: " + required)
-for required_id in ("proyectos", "como-trabajamos", "planes"):
+for required_id in ("proyectos", "como-trabajamos"):
     if required_id not in homepage.ids:
         failures.append("Homepage missing required section: " + required_id)
 if not (root / "conversion.css").exists():
     failures.append("Missing conversion.css")
+if "plan-selection" in (root / "index.html").read_text(encoding="utf-8"):
+    failures.append("Homepage still contains the full plan comparison")
+if not (root / "revision.css").exists():
+    failures.append("Missing revision.css")
+for file in files:
+    if any(symbol in file.read_text(encoding="utf-8") for symbol in ("↗", "→", "←", "↑")):
+        failures.append("Decorative arrow remains in " + str(file.relative_to(root)))
 
 print(json.dumps({
     "pages": len(files),
