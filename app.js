@@ -218,15 +218,24 @@ if(location.pathname==='/'&&oldPaths[location.hash.slice(1)])location.replace(ol
 document.querySelectorAll('.faq-question').forEach(button=>{const answer=button.nextElementSibling;answer.hidden=button.getAttribute('aria-expanded')!=='true';button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));answer.hidden=!open;});});
 const form=document.querySelector('#contactForm');
 if(form){
- const status=document.querySelector('#formStatus');
  const params=new URLSearchParams(location.search);const selection=params.get('servicio')||params.get('plan');
  if(selection){const message=form.querySelector('[name="mensaje"]');message.value=`Me interesa: ${selection}. `;}
  form.addEventListener('submit',e=>{
   e.preventDefault();if(!form.reportValidity())return;
   const data=new FormData(form);if(data.get('bot-field'))return;
-  const services=data.getAll('servicio').join(', ')||'Por definir';
-  const message=`Hola Néstor, soy ${data.get('nombre')} de ${data.get('negocio')}.\nMe interesa: ${services}.\nTeléfono: ${data.get('telefono')}\nCorreo: ${data.get('email')}\n${data.get('mensaje')||''}`;
-  status.replaceChildren(document.createTextNode('Tu mensaje está listo. '));
-  const link=document.createElement('a');link.href='https://wa.me/50244931218?text='+encodeURIComponent(message);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir WhatsApp para revisarlo y enviarlo ';status.append(link);link.focus();
+  const name=String(data.get('nombre')||'').trim();
+  const business=String(data.get('negocio')||'').trim();
+  const phone=String(data.get('telefono')||'').trim();
+  const email=String(data.get('email')||'').trim();
+  const services=data.getAll('servicio').map(value=>String(value).trim()).filter(Boolean);
+  const details=String(data.get('mensaje')||'').trim();
+  const lines=['Hola Néstor, vi la página de Lumix Studio y quisiera información.'];
+  if(name)lines.push(`Nombre: ${name}`);
+  if(business)lines.push(`Negocio: ${business}`);
+  if(phone)lines.push(`Teléfono: ${phone}`);
+  if(email)lines.push(`Correo: ${email}`);
+  if(services.length)lines.push(`Servicios: ${services.join(', ')}`);
+  if(details)lines.push(`Mensaje: ${details}`);
+  location.href='https://wa.me/50244931218?text='+encodeURIComponent(lines.join('\n'));
  });
 }
