@@ -133,6 +133,12 @@ if not (root / "conversion.css").exists():
     failures.append("Missing conversion.css")
 if "plan-selection" in (root / "index.html").read_text(encoding="utf-8"):
     failures.append("Homepage still contains the full plan comparison")
+homepage_html = (root / "index.html").read_text(encoding="utf-8")
+for step in ("01", "02", "03"):
+    if homepage_html.count(f'class="flow-step">{step}</b>') != 1:
+        failures.append("Automation flow must contain step " + step + " exactly once")
+if "✳" in homepage_html or "✓" in homepage_html:
+    failures.append("Automation flow still contains ambiguous status symbols")
 all_html = "\n".join(file.read_text(encoding="utf-8") for file in files)
 if all_html.count('plan-selection') != 1:
     failures.append("Plan comparison must appear exactly once across the site")
