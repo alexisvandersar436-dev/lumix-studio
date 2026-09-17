@@ -4,9 +4,10 @@ from urllib.parse import urlparse
 from xml.etree import ElementTree
 import json
 import re
+import sys
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
 DOMAIN = "lumixstudio.co"
 
 
