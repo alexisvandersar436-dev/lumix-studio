@@ -4,3 +4,45 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "http://lumixstudio.co/*"
+  to = "https://lumixstudio.co/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.lumixstudio.co/*"
+  to = "https://lumixstudio.co/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.lumixstudio.co/*"
+  to = "https://lumixstudio.co/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
