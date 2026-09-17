@@ -133,6 +133,14 @@ if not (root / "conversion.css").exists():
     failures.append("Missing conversion.css")
 if "plan-selection" in (root / "index.html").read_text(encoding="utf-8"):
     failures.append("Homepage still contains the full plan comparison")
+all_html = "\n".join(file.read_text(encoding="utf-8") for file in files)
+if all_html.count('plan-selection') != 1:
+    failures.append("Plan comparison must appear exactly once across the site")
+about_html = (root / "nosotros" / "index.html").read_text(encoding="utf-8")
+if 'class="note-scroll"' in about_html or 'class="founder-intro' in about_html:
+    failures.append("About page still contains a duplicate founder section")
+if about_html.count('class="founder-story"') != 1:
+    failures.append("About page must contain exactly one founder story")
 if not (root / "revision.css").exists():
     failures.append("Missing revision.css")
 for file in files:

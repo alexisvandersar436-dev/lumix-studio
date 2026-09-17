@@ -17,7 +17,10 @@ if (process.argv.includes('--cleanup-only')) {
     let text = fs.readFileSync(file, 'utf8');
     text = text
       .replaceAll('<span aria-hidden="true"></span>', '')
-      .replaceAll('Explorar seo local', 'Explorar SEO local');
+      .replaceAll('Explorar seo local', 'Explorar SEO local')
+      .replaceAll('Experiencia responsive', 'Adaptable a celular')
+      .replaceAll('Diseño responsivo', 'Diseño adaptable')
+      .replaceAll('Sitio web moderno y responsivo', 'Sitio web moderno y adaptable');
     fs.writeFileSync(file, text);
   }
   console.log('Applied copy cleanup.');

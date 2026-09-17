@@ -37,3 +37,22 @@
   .supporting-services>div:first-child{grid-template-columns:1fr;gap:18px}
   .supporting-services-grid{margin-top:32px}
 }
+
+/* Revision 3: one readable founder story, without letter-by-letter effects. */
+.founder-story{background:#f0eee5;padding-block:clamp(64px,8vw,110px)}
+.founder-story-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(45px,8vw,110px);align-items:start}
+.founder-story h2{font-size:clamp(40px,4.8vw,68px);line-height:1.08;margin-top:22px;max-width:11ch}
+.founder-story-copy{border-top:1px solid var(--line);padding-top:28px}
+.founder-story-copy>p{font:clamp(20px,2.1vw,30px)/1.5 Georgia,'Times New Roman',serif;letter-spacing:-.02em;max-width:29ch;margin:0 0 24px;text-wrap:pretty}
+.founder-story-copy>p+ p{font:15px/1.8 Arial,sans-serif;letter-spacing:0;max-width:52ch;color:#526052}
+.founder-story-signature{display:flex;flex-direction:column;gap:5px;margin:32px 0 4px}
+.founder-story-signature strong{font:italic 25px Georgia,serif;font-weight:400}
+.founder-story-signature span{font-size:11px;color:#64725b}
+.founder-story-copy .text-link{margin-top:25px}
+
+@media(max-width:760px){
+  .founder-story-grid{grid-template-columns:1fr;gap:34px}
+  .founder-story h2{font-size:42px}
+  .founder-story-copy>p{font-size:24px}
+  .founder-story-copy>p+ p{font-size:15px}
+}
