@@ -56,3 +56,21 @@
   .founder-story-copy>p{font-size:24px}
   .founder-story-copy>p+ p{font-size:15px}
 }
+
+/* Revision 4: protect the portrait from the display headline on larger screens. */
+@media(min-width:1101px){
+  .cinema-photo{clip-path:inset(7% 4% 7% 61% round 125px 5px 5px 5px)}
+  .cinema-photo img{transform-origin:center center;will-change:transform}
+  .cinema-intro h1,
+  html.cinematic .cinema-intro h1{font-size:clamp(64px,6vw,88px);max-width:min(680px,55vw);letter-spacing:-.055em}
+}
+
+@media(min-width:761px) and (max-width:1100px){
+  .cinema-photo{clip-path:inset(7% 4% 7% 55% round 105px 5px 5px 5px)}
+  .cinema-intro h1,
+  html.cinematic .cinema-intro h1{font-size:clamp(54px,6.5vw,72px);max-width:52vw;letter-spacing:-.05em}
+}
+
+@media(min-width:761px) and (prefers-reduced-motion:reduce){
+  .cinema-photo{clip-path:inset(7% 4% 7% 61% round 125px 5px 5px 5px)!important}
+}

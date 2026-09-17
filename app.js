@@ -25,6 +25,7 @@ const sculpture=document.querySelector('.sculpture');
 const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
 const cinemaWrap=document.querySelector('.cinema-wrap');
 const cinemaPhoto=document.querySelector('.cinema-photo');
+const cinemaImage=cinemaPhoto?.querySelector('img');
 const cinemaIntro=document.querySelector('.cinema-intro');
 const cinemaReveal=document.querySelector('.cinema-reveal');
 const journey=document.querySelector('.photo-journey');
@@ -76,7 +77,9 @@ function paintCinema(){
   const rect=cinemaWrap.getBoundingClientRect();
   const progress=clamp((83-rect.top)/(rect.height-(innerHeight-83)));
   const open=progress*progress*(3-2*progress);
-  cinemaPhoto.style.clipPath='inset('+((1-open)*7)+'% '+((1-open)*4)+'% '+((1-open)*7)+'% '+((1-open)*48)+'% round '+((1-open)*125)+'px 0 0 0)';
+  const closedInset=innerWidth>1100?61:55;
+  cinemaPhoto.style.clipPath='inset('+((1-open)*7)+'% '+((1-open)*4)+'% '+((1-open)*7)+'% '+((1-open)*closedInset)+'% round '+((1-open)*125)+'px 0 0 0)';
+  if(cinemaImage)cinemaImage.style.transform='translateX('+((1-open)*5)+'%) scale('+(1+(1-open)*.08)+')';
   cinemaIntro.style.transform='translate3d('+(-open*80)+'px,'+(-open*100)+'px,0)';
   cinemaIntro.style.opacity=String(1-clamp(open*2.3));
   cinemaIntro.style.pointerEvents=open>.45?'none':'';
@@ -107,7 +110,7 @@ function syncCinema(){
  document.documentElement.classList.toggle('cinematic',enabled);
  syncTyping();
  journeyPhotos.forEach(img=>{img.style.removeProperty('transform');img.parentElement.querySelector('div')?.style.removeProperty('transform');});
- [cinemaPhoto,cinemaIntro,cinemaReveal,journeyTrack].filter(Boolean).forEach(e=>{e.style.removeProperty('transform');e.style.removeProperty('opacity');e.style.removeProperty('clip-path');e.style.removeProperty('pointer-events');});
+ [cinemaPhoto,cinemaImage,cinemaIntro,cinemaReveal,journeyTrack].filter(Boolean).forEach(e=>{e.style.removeProperty('transform');e.style.removeProperty('opacity');e.style.removeProperty('clip-path');e.style.removeProperty('pointer-events');});
  cinemaIntro?.querySelectorAll('a').forEach(a=>a.removeAttribute('tabindex'));
  if(changed&&anchor){const top=anchor.getBoundingClientRect().top+scrollY;const max=Math.max(0,anchor.offsetHeight-innerHeight+83);scrollTo({top:Math.max(0,top-83+Math.min(-offset,max)),behavior:'instant'});}
 }
