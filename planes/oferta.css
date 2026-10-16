@@ -1,0 +1,14 @@
+.offer-section{padding:clamp(32px,5vw,64px);margin-block:24px 80px;border-radius:28px;background:#163e32;color:#f7f6ef;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:clamp(24px,5vw,64px);align-items:center}
+.offer-section .eyebrow{color:#d0e0c5}
+.offer-section h2{font-size:clamp(2rem,4vw,3.6rem);line-height:1.08;max-width:15ch;margin:12px 0 16px}
+.offer-section p{max-width:62ch;line-height:1.65}
+.offer-section>div>p{color:#f7f6ef}
+.offer-price{background:#f7f6ef;color:#163e32;border-radius:20px;padding:28px}
+.offer-price .eyebrow{color:#4c6054}
+.offer-price p{color:#163e32}
+.offer-price .regular-price{text-decoration:line-through;color:#5f7167;margin:0}
+.offer-price .sale-price{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.1;margin:4px 0 12px}
+.offer-price .btn{display:inline-flex;margin:8px 0 4px}
+.offer-terms{font-size:.88rem;opacity:.88;margin-top:18px}
+.offer-price .offer-terms{color:#4c6054}
+@media(max-width:760px){.offer-section{grid-template-columns:1fr;margin-block:16px 56px;padding:28px 22px}.offer-price{padding:24px}}
