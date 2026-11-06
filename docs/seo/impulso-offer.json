@@ -1,0 +1,19 @@
+{
+  "verifiedOn": "2026-11-05",
+  "brand": "Lumix Studio",
+  "website": "https://lumixstudio.co/",
+  "instagram": "https://www.instagram.com/lumixstudio.gt/",
+  "plan": "Impulso",
+  "currency": "GTQ",
+  "regularDesignDevelopmentPrice": 1500,
+  "promotionalDesignDevelopmentPrice": 1125,
+  "discountPercent": 25,
+  "savings": 375,
+  "consultationBookingStart": "2026-10-16",
+  "consultationBookingEnd": "2027-01-16",
+  "eligibility": "Clientes nuevos que reserven su primera consulta gratuita durante la vigencia de la oferta para su primer sitio web del plan Impulso.",
+  "included": ["Diseño y desarrollo del sitio según alcance acordado", "Diseño adaptable", "WhatsApp y formulario de contacto"],
+  "separatelyQuoted": ["Dominio", "Hosting", "Mantenimiento", "Servicios de terceros"],
+  "otherPlans": "Crecimiento y Expansión se cotizan según alcance; no tienen precio fijo aprobado en este documento.",
+  "offerUrl": "https://lumixstudio.co/planes/#oferta-web"
+}
